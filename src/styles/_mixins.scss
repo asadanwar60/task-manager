@@ -1,0 +1,40 @@
+@use 'sass:map';
+@use '@/styles/colors' as *;
+@use '@/styles/spacing' as *;
+@use '@/styles/typography' as *;
+
+@mixin text-style($name) {
+  $config: map.get($typography, $name);
+  $size: map.get($config, size);
+  $weight: map.get($config, weight);
+  $line-height: map.get($config, line-height);
+
+  font-size: map.get($font-sizes, $size);
+  font-weight: map.get($font-weights, $weight);
+  line-height: map.get($line-heights, $line-height);
+}
+
+@mixin focus-ring {
+  outline: 2px solid $primary;
+  outline-offset: 2px;
+}
+
+@mixin card-surface {
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, lg);
+  background: $surface;
+  box-shadow: map.get($shadows, default);
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+}

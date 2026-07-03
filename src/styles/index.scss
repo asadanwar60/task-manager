@@ -1,0 +1,2164 @@
+@use 'sass:map';
+@use '@/styles/colors' as *;
+@use '@/styles/spacing' as *;
+@use '@/styles/typography' as *;
+@use '@/styles/mixins' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: $breakpoint-desktop-min;
+  height: 100%;
+  background: $app-bg;
+  color: $text-primary;
+  font-family: $font-family-base;
+  text-rendering: geometricPrecision;
+}
+
+body {
+  min-width: $breakpoint-desktop-min;
+  height: 100%;
+  margin: 0;
+  background: $app-bg;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @include text-style(body);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+#app {
+  height: 100%;
+  min-height: 100vh;
+}
+
+:focus-visible {
+  @include focus-ring;
+}
+
+@each $name, $value in $background-colors {
+  .bg-#{$name} {
+    background: $value;
+  }
+}
+
+.bg-app {
+  background: $app-bg;
+}
+
+@each $name, $value in $text-colors {
+  .text-#{$name} {
+    color: $value;
+  }
+}
+
+.border {
+  border: 1px solid $border-color;
+}
+
+@each $name, $value in $border-colors {
+  .border-#{$name} {
+    border: 1px solid $value;
+  }
+}
+
+@each $name, $value in $radii {
+  @if $name == default {
+    .rounded {
+      border-radius: $value;
+    }
+  } @else {
+    .rounded-#{$name} {
+      border-radius: $value;
+    }
+  }
+}
+
+@each $name, $value in $shadows {
+  @if $name == default {
+    .shadow {
+      box-shadow: $value;
+    }
+  } @else {
+    .shadow-#{$name} {
+      box-shadow: $value;
+    }
+  }
+}
+
+@each $name, $config in $typography {
+  .text-#{$name} {
+    @include text-style($name);
+  }
+}
+
+@each $name, $value in $font-weights {
+  .font-#{$name} {
+    font-weight: $value;
+  }
+}
+
+@each $name, $value in $text-alignments {
+  .text-#{$name} {
+    text-align: $value;
+  }
+}
+
+@each $name, $value in $text-transforms {
+  .#{$name} {
+    text-transform: $value;
+  }
+}
+
+@each $name, $value in $opacities {
+  .opacity-#{$name} {
+    opacity: $value;
+  }
+}
+
+@each $step, $value in $spacing-scale {
+  .m-#{$step} {
+    margin: $value;
+  }
+
+  .mt-#{$step} {
+    margin-top: $value;
+  }
+
+  .mr-#{$step} {
+    margin-right: $value;
+  }
+
+  .mb-#{$step} {
+    margin-bottom: $value;
+  }
+
+  .ml-#{$step} {
+    margin-left: $value;
+  }
+
+  .mx-#{$step} {
+    margin-right: $value;
+    margin-left: $value;
+  }
+
+  .my-#{$step} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+
+  .p-#{$step} {
+    padding: $value;
+  }
+
+  .pt-#{$step} {
+    padding-top: $value;
+  }
+
+  .pr-#{$step} {
+    padding-right: $value;
+  }
+
+  .pb-#{$step} {
+    padding-bottom: $value;
+  }
+
+  .pl-#{$step} {
+    padding-left: $value;
+  }
+
+  .px-#{$step} {
+    padding-right: $value;
+    padding-left: $value;
+  }
+
+  .py-#{$step} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+
+  .gap-#{$step} {
+    gap: $value;
+  }
+}
+
+@each $name, $value in $displays {
+  .d-#{$name} {
+    display: $value;
+  }
+}
+
+@each $name, $value in $flex-directions {
+  .flex-#{$name} {
+    flex-direction: $value;
+  }
+}
+
+@each $name, $value in $justify-content {
+  .justify-#{$name} {
+    justify-content: $value;
+  }
+}
+
+@each $name, $value in $align-items {
+  .align-#{$name} {
+    align-items: $value;
+  }
+}
+
+@each $name, $value in $flex-wraps {
+  .flex-#{$name} {
+    flex-wrap: $value;
+  }
+}
+
+.flex-1 {
+  flex: 1 1 0;
+}
+
+@each $name, $value in $widths {
+  .w-#{$name} {
+    width: $value;
+  }
+}
+
+@each $name, $value in $heights {
+  .h-#{$name} {
+    height: $value;
+  }
+}
+
+@each $name, $value in $min-heights {
+  .min-h-#{$name} {
+    min-height: $value;
+  }
+}
+
+@each $name, $value in $max-widths {
+  .max-w-#{$name} {
+    max-width: $value;
+  }
+}
+
+@each $name, $value in $overflows {
+  .overflow-#{$name} {
+    overflow: $value;
+  }
+}
+
+@each $name, $value in $cursors {
+  .cursor-#{$name} {
+    cursor: $value;
+  }
+}
+
+@each $name, $value in $positions {
+  .#{$name} {
+    position: $value;
+  }
+}
+
+.place-center {
+  place-items: center;
+}
+
+.surface-card {
+  @include card-surface;
+}
+
+.truncate {
+  @include truncate;
+}
+
+.line-clamp-2 {
+  @include line-clamp(2);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.scroll-y::-webkit-scrollbar,
+.layout-content::-webkit-scrollbar,
+.kanban-column__cards::-webkit-scrollbar,
+.task-detail__body::-webkit-scrollbar,
+.task-list::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scroll-y::-webkit-scrollbar-thumb,
+.layout-content::-webkit-scrollbar-thumb,
+.kanban-column__cards::-webkit-scrollbar-thumb,
+.task-detail__body::-webkit-scrollbar-thumb,
+.task-list::-webkit-scrollbar-thumb {
+  border-radius: map.get($radii, sm);
+  background: $scrollbar-thumb;
+}
+
+.app-layout {
+  display: grid;
+  grid-template-columns: map.get($sizes, sidebar-width) 1fr;
+  min-width: $breakpoint-desktop-min;
+  min-height: 100vh;
+  background: $app-bg;
+}
+
+.app-layout__body {
+  min-width: 0;
+  border-left: 1px solid $border-soft;
+  background: $surface;
+}
+
+.layout-content {
+  height: calc(100vh - map.get($sizes, header-height));
+  overflow: auto;
+  padding: map.get($spacing-scale, 6) map.get($spacing-scale, 7) map.get($spacing-scale, 7);
+}
+
+.layout-sidebar {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+  background: $surface;
+  padding: map.get($spacing-scale, 4);
+}
+
+.layout-sidebar__brand,
+.layout-logo,
+.layout-header,
+.layout-header__actions,
+.layout-sidebar__search,
+.layout-sidebar-item {
+  display: flex;
+  align-items: center;
+}
+
+.layout-sidebar__brand,
+.layout-header {
+  justify-content: space-between;
+}
+
+.layout-sidebar__brand {
+  height: 44px;
+  margin-bottom: map.get($spacing-scale, 3);
+}
+
+.layout-logo {
+  gap: map.get($spacing-scale, 3);
+}
+
+.layout-logo__mark {
+  width: 30px;
+  height: 30px;
+  border-radius: map.get($radii, md);
+  background: $primary;
+  color: $white;
+}
+
+.layout-logo__mark-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.layout-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  background: currentColor;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+.layout-icon--add {
+  -webkit-mask-image: url('/src/assets/icons/layout/add.svg');
+  mask-image: url('/src/assets/icons/layout/add.svg');
+}
+
+.layout-icon--board {
+  -webkit-mask-image: url('/src/assets/icons/layout/board.svg');
+  mask-image: url('/src/assets/icons/layout/board.svg');
+}
+
+.layout-icon--calendar {
+  -webkit-mask-image: url('/src/assets/icons/layout/calendar.svg');
+  mask-image: url('/src/assets/icons/layout/calendar.svg');
+}
+
+.layout-icon--chevron-down {
+  -webkit-mask-image: url('/src/assets/icons/layout/chevron-down.svg');
+  mask-image: url('/src/assets/icons/layout/chevron-down.svg');
+}
+
+.layout-icon--clock {
+  -webkit-mask-image: url('/src/assets/icons/layout/clock.svg');
+  mask-image: url('/src/assets/icons/layout/clock.svg');
+}
+
+.layout-icon--close {
+  -webkit-mask-image: url('/src/assets/icons/layout/close.svg');
+  mask-image: url('/src/assets/icons/layout/close.svg');
+}
+
+.layout-icon--dashboard {
+  -webkit-mask-image: url('/src/assets/icons/layout/dashboard.svg');
+  mask-image: url('/src/assets/icons/layout/dashboard.svg');
+}
+
+.layout-icon--document {
+  -webkit-mask-image: url('/src/assets/icons/layout/document.svg');
+  mask-image: url('/src/assets/icons/layout/document.svg');
+}
+
+.layout-icon--drag-handle {
+  -webkit-mask-image: url('/src/assets/icons/layout/drag-handle.svg');
+  mask-image: url('/src/assets/icons/layout/drag-handle.svg');
+}
+
+.layout-icon--edit {
+  -webkit-mask-image: url('/src/assets/icons/layout/edit.svg');
+  mask-image: url('/src/assets/icons/layout/edit.svg');
+}
+
+.layout-icon--empty-card {
+  -webkit-mask-image: url('/src/assets/icons/layout/empty-card.svg');
+  mask-image: url('/src/assets/icons/layout/empty-card.svg');
+}
+
+.layout-icon--expand {
+  -webkit-mask-image: url('/src/assets/icons/layout/expand.svg');
+  mask-image: url('/src/assets/icons/layout/expand.svg');
+}
+
+.layout-icon--filter {
+  -webkit-mask-image: url('/src/assets/icons/layout/filter.svg');
+  mask-image: url('/src/assets/icons/layout/filter.svg');
+}
+
+.layout-icon--flag {
+  -webkit-mask-image: url('/src/assets/icons/layout/flag.svg');
+  mask-image: url('/src/assets/icons/layout/flag.svg');
+}
+
+.layout-icon--folder {
+  -webkit-mask-image: url('/src/assets/icons/layout/folder.svg');
+  mask-image: url('/src/assets/icons/layout/folder.svg');
+}
+
+.layout-icon--history {
+  -webkit-mask-image: url('/src/assets/icons/layout/history.svg');
+  mask-image: url('/src/assets/icons/layout/history.svg');
+}
+
+.layout-icon--invite {
+  -webkit-mask-image: url('/src/assets/icons/layout/invite.svg');
+  mask-image: url('/src/assets/icons/layout/invite.svg');
+}
+
+.layout-icon--list {
+  -webkit-mask-image: url('/src/assets/icons/layout/list.svg');
+  mask-image: url('/src/assets/icons/layout/list.svg');
+}
+
+.layout-icon--logo-check {
+  -webkit-mask-image: url('/src/assets/icons/layout/logo-check.svg');
+  mask-image: url('/src/assets/icons/layout/logo-check.svg');
+}
+
+.layout-icon--logout {
+  -webkit-mask-image: url('/src/assets/icons/layout/logout.svg');
+  mask-image: url('/src/assets/icons/layout/logout.svg');
+}
+
+.layout-icon--member {
+  -webkit-mask-image: url('/src/assets/icons/layout/member.svg');
+  mask-image: url('/src/assets/icons/layout/member.svg');
+}
+
+.layout-icon--more {
+  -webkit-mask-image: url('/src/assets/icons/layout/more.svg');
+  mask-image: url('/src/assets/icons/layout/more.svg');
+}
+
+.layout-icon--notifications {
+  -webkit-mask-image: url('/src/assets/icons/layout/notifications.svg');
+  mask-image: url('/src/assets/icons/layout/notifications.svg');
+}
+
+.layout-icon--search {
+  -webkit-mask-image: url('/src/assets/icons/layout/search.svg');
+  mask-image: url('/src/assets/icons/layout/search.svg');
+}
+
+.layout-icon--settings {
+  -webkit-mask-image: url('/src/assets/icons/layout/settings.svg');
+  mask-image: url('/src/assets/icons/layout/settings.svg');
+}
+
+.layout-icon--share {
+  -webkit-mask-image: url('/src/assets/icons/layout/share.svg');
+  mask-image: url('/src/assets/icons/layout/share.svg');
+}
+
+.layout-icon--sort {
+  -webkit-mask-image: url('/src/assets/icons/layout/sort.svg');
+  mask-image: url('/src/assets/icons/layout/sort.svg');
+}
+
+.layout-icon--star {
+  -webkit-mask-image: url('/src/assets/icons/layout/star.svg');
+  mask-image: url('/src/assets/icons/layout/star.svg');
+}
+
+.layout-icon--status {
+  -webkit-mask-image: url('/src/assets/icons/layout/status.svg');
+  mask-image: url('/src/assets/icons/layout/status.svg');
+}
+
+.layout-icon--tag {
+  -webkit-mask-image: url('/src/assets/icons/layout/tag.svg');
+  mask-image: url('/src/assets/icons/layout/tag.svg');
+}
+
+.layout-icon--task {
+  -webkit-mask-image: url('/src/assets/icons/layout/task.svg');
+  mask-image: url('/src/assets/icons/layout/task.svg');
+}
+
+.layout-icon--trash {
+  -webkit-mask-image: url('/src/assets/icons/layout/trash.svg');
+  mask-image: url('/src/assets/icons/layout/trash.svg');
+}
+
+.layout-sidebar__collapse,
+.layout-sidebar__search,
+.layout-header__icon-button,
+.layout-header__button {
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, default);
+  background: $surface;
+  color: $text-muted;
+}
+
+.layout-sidebar__collapse,
+.layout-header__icon-button {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-sidebar__collapse {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+}
+
+.layout-sidebar__search {
+  height: 40px;
+  gap: map.get($spacing-scale, 3);
+  margin: map.get($spacing-scale, 3) 0 map.get($spacing-scale, 3);
+  padding: 0 map.get($spacing-scale, 3);
+
+  input {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    color: $text-muted;
+    outline: 0;
+  }
+}
+
+.layout-sidebar__section {
+  padding: map.get($spacing-scale, 1) 0;
+}
+
+.layout-sidebar__workspace {
+  margin-top: map.get($spacing-scale, 4);
+  padding-top: map.get($spacing-scale, 1);
+}
+
+.layout-sidebar__section-title {
+  margin: map.get($spacing-scale, 2) map.get($spacing-scale, 2);
+}
+
+.layout-sidebar__bottom {
+  border-top: 1px solid $border-soft;
+  padding-top: map.get($spacing-scale, 4);
+}
+
+.layout-sidebar-item {
+  width: 100%;
+  min-height: 36px;
+  gap: map.get($spacing-scale, 2);
+  border: 1px solid transparent;
+  border-radius: map.get($radii, md);
+  background: transparent;
+  color: $text-primary;
+  font-size: map.get($font-sizes, body);
+  font-weight: map.get($font-weights, medium);
+  padding: map.get($spacing-scale, 1) map.get($spacing-scale, 2);
+  text-align: left;
+  transition:
+    background map.get($transitions, base),
+    border-color map.get($transitions, base),
+    color map.get($transitions, base);
+
+  & + & {
+    margin-top: map.get($spacing-scale, 1);
+  }
+
+  &:hover,
+  &--active {
+    background: $surface;
+    border-color: $border-soft;
+    color: $text-primary;
+  }
+
+  &--active {
+    box-shadow: map.get($shadows, sm);
+    font-weight: map.get($font-weights, semibold);
+  }
+}
+
+.layout-sidebar-item__icon-frame {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: map.get($radii, md);
+  color: $text-soft;
+  transition:
+    background map.get($transitions, base),
+    color map.get($transitions, base);
+}
+
+.layout-sidebar-item__icon {
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
+}
+
+.layout-sidebar-item--brand-icon .layout-sidebar-item__icon-frame {
+  color: $primary;
+}
+
+.layout-sidebar-item--active .layout-sidebar-item__icon-frame {
+  background: $primary-soft;
+  color: $primary;
+}
+
+.layout-header {
+  height: map.get($sizes, header-height);
+  border-bottom: 1px solid $border-soft;
+  background: $surface;
+  padding: 0 map.get($spacing-scale, 7);
+}
+
+.layout-header__greeting {
+  margin-bottom: map.get($spacing-scale, 1);
+  font-size: map.get($font-sizes, h1);
+  font-weight: map.get($font-weights, bold);
+  letter-spacing: -0.3px;
+  line-height: map.get($line-heights, tight);
+}
+
+.layout-header__date {
+  font-size: map.get($font-sizes, body);
+}
+
+.layout-header__actions {
+  gap: map.get($spacing-scale, 3);
+}
+
+.layout-header__button {
+  display: inline-flex;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: map.get($spacing-scale, 2);
+  padding: 0 map.get($spacing-scale, 4);
+  font-weight: map.get($font-weights, medium);
+  color: $text-primary;
+}
+
+.layout-header__button .layout-icon,
+.layout-header__icon-button .layout-icon {
+  width: 18px;
+  height: 18px;
+  flex-basis: 18px;
+}
+
+.layout-header__button:hover,
+.layout-header__icon-button:hover,
+.layout-sidebar__collapse:hover {
+  background: $surface-soft;
+}
+
+.task-manager-page__heading {
+  margin-bottom: map.get($spacing-scale, 8);
+}
+
+.task-manager-page__toolbar {
+  margin-bottom: map.get($spacing-scale, 8);
+}
+
+.toolbar-dropdown {
+  position: relative;
+}
+
+.toolbar-dropdown__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: map.get($z-indexes, dropdown);
+  display: grid;
+  min-width: 240px;
+  gap: map.get($spacing-scale, 4);
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, md);
+  background: $surface;
+  box-shadow: map.get($shadows, md);
+  padding: map.get($spacing-scale, 4);
+}
+
+.toolbar-dropdown__field {
+  display: grid;
+  gap: map.get($spacing-scale, 2);
+  color: $text-primary;
+  font-size: map.get($font-sizes, caption);
+  font-weight: map.get($font-weights, semibold);
+}
+
+.toolbar-dropdown__field select {
+  width: 100%;
+  min-height: 36px;
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, default);
+  background: $surface;
+  color: $text-primary;
+  font: inherit;
+  font-weight: map.get($font-weights, normal);
+  padding: 0 map.get($spacing-scale, 3);
+}
+
+.view-toggle {
+  border-bottom: 1px solid $border-soft;
+}
+
+.view-toggle__item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: map.get($spacing-scale, 2);
+  border: 0;
+  background: transparent;
+  color: $text-muted;
+  font-size: map.get($font-sizes, body);
+  font-weight: map.get($font-weights, medium);
+  padding: 0 0 map.get($spacing-scale, 3);
+  transition:
+    color map.get($transitions, base),
+    border-color map.get($transitions, base);
+
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    border-radius: map.get($radii, full);
+    background: transparent;
+    content: '';
+  }
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.view-toggle__item--active {
+  color: $primary;
+
+  &::after {
+    background: $primary;
+  }
+}
+
+.view-toggle__item .layout-icon {
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
+}
+
+.kanban-board {
+  display: flex;
+  align-items: stretch;
+  gap: map.get($spacing-scale, 6);
+  min-height: 70vh;
+}
+
+.kanban-board__add-column {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  border: 0;
+  border-radius: map.get($radii, md);
+  background: $surface-soft;
+  color: $text-muted;
+  transition:
+    background map.get($transitions, base),
+    color map.get($transitions, base);
+
+  &:hover {
+    background: $primary-soft;
+    color: $primary;
+  }
+}
+
+.kanban-column {
+  min-width: 0;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 95vh;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: map.get($radii, xl);
+  background: $surface-column;
+  padding: map.get($spacing-scale, 4) map.get($spacing-scale, 3);
+  transition:
+    border-color map.get($transitions, base),
+    background map.get($transitions, base);
+}
+
+.kanban-column--drag-over {
+  border-color: $primary;
+  background: $surface-soft;
+}
+
+.kanban-column__header {
+  position: sticky;
+  top: 0;
+  z-index: map.get($z-indexes, sticky);
+  flex: 0 0 auto;
+  margin-bottom: map.get($spacing-scale, 5);
+  background: $surface-column;
+  padding: 0 map.get($spacing-scale, 1) map.get($spacing-scale, 1);
+}
+
+.kanban-column__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: map.get($radii, full);
+  background: $warning;
+}
+
+.kanban-column--progress .kanban-column__dot {
+  background: $info;
+}
+
+.kanban-column--done .kanban-column__dot {
+  background: $accent-pink;
+}
+
+.kanban-column__title {
+  color: $text-primary;
+  font-size: map.get($font-sizes, column-heading);
+  font-weight: map.get($font-weights, semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.kanban-column__count {
+  min-width: 20px;
+  height: 20px;
+  border-radius: map.get($radii, full);
+  background: $primary;
+  color: $white;
+}
+
+.kanban-column__cards {
+  width: 100%;
+  min-height: 0;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-x: clip;
+  overflow-y: auto;
+  gap: map.get($spacing-scale, 4);
+  padding-right: map.get($spacing-scale, 1);
+  padding-bottom: map.get($spacing-scale, 2);
+}
+
+.kanban-column__empty {
+  flex: 1 1 auto;
+  min-height: 220px;
+  border: 1px dashed $border-color;
+  border-radius: map.get($radii, md);
+  background: $surface-translucent;
+  padding: map.get($spacing-scale, 6);
+}
+
+.kanban-column--todo .kanban-column__empty {
+  border-color: $warning;
+  background: $warning-soft;
+}
+
+.kanban-column--progress .kanban-column__empty {
+  border-color: $info;
+  background: $info-soft;
+}
+
+.kanban-column--done .kanban-column__empty {
+  border-color: $success;
+  background: $success-soft;
+}
+
+.kanban-column__empty-icon {
+  width: 38px;
+  height: 38px;
+  margin-bottom: map.get($spacing-scale, 3);
+  color: $text-muted;
+}
+
+.kanban-card-move,
+.kanban-card-enter-active,
+.kanban-card-leave-active {
+  transition:
+    opacity 280ms ease,
+    transform 280ms ease;
+}
+
+.kanban-card-enter-from {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+}
+
+.kanban-card-leave-to {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.task-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, lg);
+  background: $surface;
+  box-shadow: map.get($shadows, sm);
+  cursor: grab;
+  padding: map.get($spacing-scale, 3) map.get($spacing-scale, 4);
+  transition:
+    border-color map.get($transitions, base),
+    box-shadow map.get($transitions, base),
+    transform map.get($transitions, base);
+
+  &:hover {
+    border-color: $border-color;
+    box-shadow: map.get($shadows, default);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.task-card__top,
+.task-card__title,
+.task-card__description,
+.task-card__assignee,
+.task-card__meta {
+  margin-bottom: map.get($spacing-scale, 2);
+}
+
+.task-card__title {
+  font-size: map.get($font-sizes, card-title);
+  font-weight: map.get($font-weights, semibold);
+  line-height: map.get($line-heights, tight);
+}
+
+.base-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: map.get($spacing-scale, 1);
+  padding: map.get($spacing-scale, 1) map.get($spacing-scale, 2);
+}
+
+.base-chip--rounded {
+  border-radius: map.get($radii, sm);
+}
+
+.base-chip--pill {
+  border-radius: map.get($radii, full);
+  padding: map.get($spacing-scale, 1) map.get($spacing-scale, 3);
+}
+
+.base-chip--default {
+  background: $surface-soft;
+  color: $text-secondary;
+}
+
+.base-chip--primary {
+  background: $primary-soft;
+  color: $primary;
+}
+
+.base-chip--secondary {
+  background: $surface-soft;
+  color: $text-secondary;
+}
+
+.base-chip--success {
+  background: $success-soft;
+  color: $success;
+}
+
+.base-chip--warning {
+  background: $warning-soft;
+  color: $warning;
+}
+
+.base-chip--danger {
+  background: $danger-soft;
+  color: $danger;
+}
+
+.base-chip--info {
+  background: $info-soft;
+  color: $info;
+}
+
+.base-chip__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: map.get($radii, full);
+  background: currentColor;
+}
+
+.base-tag-list {
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+.base-tag-list__overflow {
+  position: relative;
+}
+
+.base-tag-list .base-chip {
+  white-space: nowrap;
+}
+
+.base-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: map.get($spacing-scale, 2);
+  border: 0;
+  border-radius: map.get($radii, default);
+  font-weight: map.get($font-weights, medium);
+  transition:
+    background map.get($transitions, base),
+    border-color map.get($transitions, base),
+    color map.get($transitions, base);
+}
+
+.base-button--sm {
+  height: 28px;
+  min-width: 28px;
+  padding: 0 map.get($spacing-scale, 3);
+}
+
+.base-button--md {
+  height: 40px;
+  min-width: 40px;
+  padding: 0 map.get($spacing-scale, 4);
+}
+
+.base-button--icon-only {
+  padding: 0;
+}
+
+.base-button--icon-only.base-button--sm {
+  width: 28px;
+}
+
+.base-button--icon-only.base-button--md {
+  width: 40px;
+}
+
+.base-button--ghost {
+  background: transparent;
+}
+
+.base-button--outline {
+  border: 1px solid $border-soft;
+  background: $surface;
+}
+
+.base-button--soft {
+  background: $surface-soft;
+}
+
+.base-button--solid {
+  background: $primary;
+  color: $white;
+}
+
+.base-button--solid.base-button--primary {
+  background: $primary;
+  color: $white;
+}
+
+.base-button--solid.base-button--success {
+  background: $success;
+  color: $white;
+}
+
+.base-button--solid.base-button--warning {
+  background: $warning;
+  color: $white;
+}
+
+.base-button--solid.base-button--danger {
+  background: $danger;
+  color: $white;
+}
+
+.base-button--solid.base-button--info {
+  background: $info;
+  color: $white;
+}
+
+.base-button--default,
+.base-button--secondary {
+  color: $text-muted;
+
+  &:hover {
+    background: $surface-soft;
+    color: $text-primary;
+  }
+}
+
+.base-button--primary {
+  color: $primary;
+
+  &:hover {
+    background: $primary-soft;
+  }
+}
+
+.base-button--success {
+  color: $success;
+}
+
+.base-button--warning {
+  color: $warning;
+}
+
+.base-button--danger {
+  color: $danger;
+}
+
+.base-button--info {
+  color: $info;
+}
+
+.base-button--sm .layout-icon {
+  width: 18px;
+  height: 18px;
+  flex-basis: 18px;
+}
+
+.base-button--md .layout-icon {
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
+}
+
+.task-card__description {
+  color: $text-secondary;
+  line-height: map.get($line-heights, normal);
+}
+
+.base-action-menu {
+  position: relative;
+}
+
+.base-action-menu__content {
+  position: absolute;
+  top: calc(100% + #{map.get($spacing-scale, 2)});
+  right: 0;
+  z-index: map.get($z-indexes, dropdown);
+  width: 144px;
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, md);
+  background: $surface;
+  box-shadow: map.get($shadows, md);
+  padding: map.get($spacing-scale, 2);
+}
+
+.base-action-menu__item {
+  display: flex;
+  width: 100%;
+  min-height: 34px;
+  align-items: center;
+  gap: map.get($spacing-scale, 2);
+  border: 0;
+  border-radius: map.get($radii, sm);
+  background: transparent;
+  color: $text-secondary;
+  font-size: map.get($font-sizes, caption);
+  font-weight: map.get($font-weights, medium);
+  padding: 0 map.get($spacing-scale, 2);
+  text-align: left;
+
+  &:hover {
+    background: $surface-soft;
+    color: $text-primary;
+  }
+}
+
+.base-action-menu__item:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.base-action-menu__icon {
+  width: 16px;
+  height: 16px;
+  flex-basis: 16px;
+}
+
+.base-action-menu__item--danger {
+  color: $danger;
+
+  &:hover {
+    background: $danger-soft;
+    color: $danger;
+  }
+}
+
+.task-card__assignee {
+  min-height: 24px;
+  color: $text-muted;
+}
+
+.task-card__assignee .text-meta {
+  color: $text-muted;
+  font-size: map.get($font-sizes, meta);
+  font-weight: map.get($font-weights, normal);
+}
+
+.base-assignee-stack {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.base-assignee-stack__item,
+.base-assignee-stack__overflow {
+  margin-left: -8px;
+  transition:
+    margin map.get($transitions, fast),
+    transform map.get($transitions, fast);
+}
+
+.base-assignee-stack__item:last-child,
+.base-assignee-stack__overflow:last-child {
+  margin-left: 0;
+}
+
+.base-assignee-stack:hover .base-assignee-stack__item,
+.base-assignee-stack:hover .base-assignee-stack__overflow {
+  margin-left: -4px;
+}
+
+.base-assignee-stack__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.base-assignee-stack__item:hover,
+.base-assignee-stack__overflow:hover {
+  transform: translateY(-1px);
+}
+
+.base-assignee-stack__overflow {
+  width: map.get($sizes, avatar-sm);
+  height: map.get($sizes, avatar-sm);
+  border: 2px solid $white;
+  border-radius: map.get($radii, full);
+  background: $surface-soft;
+  color: $text-secondary;
+  font-size: map.get($font-sizes, overline);
+  line-height: 1;
+}
+
+.base-avatar {
+  position: relative;
+  width: map.get($sizes, avatar-sm);
+  height: map.get($sizes, avatar-sm);
+  border: 2px solid $white;
+  border-radius: map.get($radii, full);
+  color: $white;
+  font-size: map.get($font-sizes, overline);
+  text-transform: uppercase;
+}
+
+.base-avatar::after,
+.base-tag-list__overflow::after {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  z-index: map.get($z-indexes, dropdown);
+  width: max-content;
+  max-width: 180px;
+  border-radius: map.get($radii, sm);
+  background: $black;
+  color: $white;
+  content: attr(data-tooltip);
+  font-size: map.get($font-sizes, caption);
+  font-weight: map.get($font-weights, medium);
+  line-height: map.get($line-heights, tight);
+  opacity: 0;
+  padding: map.get($spacing-scale, 2) map.get($spacing-scale, 3);
+  pointer-events: none;
+  text-transform: none;
+  transform: translate(-50%, 4px);
+  transition:
+    opacity map.get($transitions, fast),
+    transform map.get($transitions, fast);
+  white-space: nowrap;
+}
+
+.base-avatar:hover::after,
+.base-tag-list__overflow:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.base-avatar--avatar-0 {
+  background: $primary;
+}
+
+.base-avatar--avatar-1 {
+  background: $info;
+}
+
+.base-avatar--avatar-2 {
+  background: $success;
+}
+
+.base-avatar--avatar-3 {
+  background: $warning;
+}
+
+.base-avatar--avatar-4 {
+  background: $accent-pink;
+}
+
+.base-avatar--avatar-5 {
+  background: $avatar-purple;
+}
+
+.base-avatar--avatar-6 {
+  background: $avatar-teal;
+}
+
+.base-avatar--avatar-7 {
+  background: $danger;
+}
+
+.base-avatar--unassigned {
+  border: 1px dotted $text-muted;
+  background: $surface-soft;
+  color: $transparent;
+}
+
+.task-card__date,
+.task-list__date {
+  color: $text-muted;
+}
+
+.task-card__date {
+  display: inline-flex;
+  align-items: center;
+  gap: map.get($spacing-scale, 1);
+  white-space: nowrap;
+}
+
+.task-card__date .layout-icon {
+  width: 16px;
+  height: 16px;
+  flex-basis: 16px;
+}
+
+.task-card__date--overdue,
+.task-list__date--overdue {
+  color: $danger;
+  font-weight: map.get($font-weights, medium);
+}
+
+.task-card__tags {
+  border-top: 1px solid $border-soft;
+  margin-top: map.get($spacing-scale, 1);
+  padding-top: map.get($spacing-scale, 3);
+}
+
+.task-card__tags .base-chip {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.task-list {
+  display: grid;
+  gap: map.get($spacing-scale, 4);
+}
+
+.task-list__group {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, lg);
+  background: $surface;
+  box-shadow: map.get($shadows, sm);
+  transition:
+    border-color map.get($transitions, base),
+    background map.get($transitions, base);
+}
+
+.task-list__group--drag-over {
+  border-color: $primary;
+  background: $primary-soft;
+}
+
+.task-list__group-header {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  gap: map.get($spacing-scale, 3);
+  justify-content: space-between;
+  background: $surface;
+  color: $text-primary;
+  padding: map.get($spacing-scale, 3) map.get($spacing-scale, 4);
+  transition: background map.get($transitions, fast);
+
+  &:hover {
+    background: $surface-soft;
+  }
+}
+
+.task-list__group-toggle-button {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+.task-list__group-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: map.get($radii, full);
+  background: $warning;
+}
+
+.task-list__group--progress .task-list__group-dot {
+  background: $info;
+}
+
+.task-list__group--done .task-list__group-dot {
+  background: $success;
+}
+
+.task-list__group-title {
+  font-size: map.get($font-sizes, column-heading);
+  font-weight: map.get($font-weights, semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.task-list__group-count {
+  display: inline-grid;
+  min-width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: map.get($radii, full);
+  background: $primary;
+  color: $white;
+  font-size: map.get($font-sizes, badge);
+  font-weight: map.get($font-weights, semibold);
+}
+
+.task-list__group-toggle {
+  color: $text-muted;
+  transition: transform map.get($transitions, base);
+}
+
+.task-list__group-toggle--collapsed {
+  transform: rotate(-90deg);
+}
+
+.task-list__table-wrap {
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-top: 1px solid $border-soft;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+}
+
+.task-list-section-enter-active,
+.task-list-section-leave-active {
+  max-height: 1200px;
+  overflow: hidden;
+  transition:
+    max-height map.get($transitions, base),
+    opacity map.get($transitions, base),
+    transform map.get($transitions, base);
+}
+
+.task-list-section-enter-from,
+.task-list-section-leave-to {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.task-list__table {
+  width: 100%;
+  min-width: 1120px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: $text-secondary;
+  font-size: map.get($font-sizes, caption);
+}
+
+.task-list__table th,
+.task-list__table td {
+  border-bottom: 1px solid $border-soft;
+  border-right: 1px solid $border-soft;
+  padding: map.get($spacing-scale, 3) map.get($spacing-scale, 4);
+  text-align: left;
+  vertical-align: top;
+}
+
+.task-list__table th:last-child,
+.task-list__table td:last-child {
+  border-right: 0;
+}
+
+.task-list__table th {
+  height: 44px;
+  background: $surface;
+  color: $text-secondary;
+  font-size: map.get($font-sizes, column-heading);
+  font-weight: map.get($font-weights, semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.task-list__table tr:last-child td {
+  border-bottom: 0;
+}
+
+.task-list__row {
+  min-height: 68px;
+  background: $surface;
+  transition:
+    background map.get($transitions, fast),
+    box-shadow map.get($transitions, fast);
+
+  &:hover {
+    background: $surface-soft;
+  }
+}
+
+.task-list__name-column {
+  width: 21%;
+}
+
+.task-list__description-column {
+  width: 23%;
+}
+
+.task-list__priority-column {
+  width: 9%;
+}
+
+.task-list__people-column {
+  width: 10%;
+}
+
+.task-list__tags-column {
+  width: 14%;
+}
+
+.task-list__timeline-column {
+  width: 19%;
+}
+
+.task-list__actions-column {
+  width: 4%;
+}
+
+.task-list__heading .layout-icon,
+.task-list__sortable-heading > .layout-icon {
+  width: 16px;
+  height: 16px;
+  flex-basis: 16px;
+  color: $text-muted;
+}
+
+.task-list__task-title {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  flex: 1 1 auto;
+  border: 0;
+  background: transparent;
+  color: $text-primary;
+  font-size: map.get($font-sizes, card-title);
+  font-weight: map.get($font-weights, semibold);
+  padding: 0;
+  text-align: left;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.task-list__task {
+  min-width: 0;
+  align-items: flex-start;
+}
+
+.task-list__description {
+  width: 100%;
+  margin: 0;
+  color: $text-secondary;
+  font-size: map.get($font-sizes, card-description);
+  font-weight: map.get($font-weights, normal);
+  line-height: 1.45;
+}
+
+.task-list__assignee {
+  min-width: 0;
+}
+
+.task-list__sortable-heading {
+  white-space: nowrap;
+}
+
+.task-list__sort-button {
+  margin-left: auto;
+  color: $text-muted;
+}
+
+.task-list__drag-handle {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  color: $text-muted;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.task-list__timeline-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: map.get($spacing-scale, 1);
+  color: $text-muted;
+  font-size: map.get($font-sizes, meta);
+  font-weight: map.get($font-weights, normal);
+  line-height: 1.45;
+  overflow: visible;
+  white-space: normal;
+}
+
+.task-list__timeline-label {
+  color: $text-muted;
+  font-weight: map.get($font-weights, medium);
+}
+
+.task-list__timeline-due,
+.task-detail__property-value--danger {
+  display: inline-flex;
+  align-items: center;
+  gap: map.get($spacing-scale, 1);
+}
+
+.task-list__overdue-icon,
+.task-detail__overdue-icon {
+  width: 16px;
+  height: 16px;
+  flex-basis: 16px;
+}
+
+.task-list__tags {
+  min-width: 0;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  overflow: visible;
+  white-space: normal;
+}
+
+.task-list__tags .base-chip {
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible;
+  white-space: normal;
+}
+
+.task-list__empty {
+  min-height: 64px;
+  color: $text-muted;
+  text-align: center !important;
+}
+
+.base-checkbox {
+  position: relative;
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  cursor: pointer;
+}
+
+.base-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.base-checkbox__control {
+  width: 16px;
+  height: 16px;
+  border: 1px solid $border-color;
+
+  background: $surface;
+  transition:
+    border-color map.get($transitions, fast),
+    background map.get($transitions, fast);
+}
+
+.base-checkbox__input:checked + .base-checkbox__control {
+  border-color: $primary;
+  background:
+    url('/src/assets/icons/layout/check.svg') center / 12px 12px no-repeat,
+    $primary-soft;
+}
+
+.base-checkbox__input:focus-visible + .base-checkbox__control {
+  @include focus-ring;
+}
+
+.base-checkbox__input:disabled + .base-checkbox__control {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.task-detail {
+  position: fixed;
+  inset: 0;
+  z-index: map.get($z-indexes, drawer);
+}
+
+.task-detail__scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: $overlay-drawer;
+}
+
+.task-detail__panel {
+  position: absolute;
+  top: map.get($spacing-scale, 5);
+  right: map.get($spacing-scale, 5);
+  bottom: map.get($spacing-scale, 5);
+  display: flex;
+  width: min(map.get($sizes, drawer-width), calc(100vw - 40px));
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, xl);
+  background: $surface;
+  box-shadow: map.get($shadows, xl);
+  animation: task-detail-slide-in map.get($transitions, drawer);
+}
+
+.task-detail__header {
+  flex: 0 0 auto;
+  border-bottom: 1px solid $border-soft;
+  padding: map.get($spacing-scale, 4) map.get($spacing-scale, 6);
+}
+
+.task-detail__body {
+  overflow: auto;
+  padding: map.get($spacing-scale, 7) map.get($spacing-scale, 8);
+}
+
+.task-detail__title {
+  color: $text-primary;
+  font-size: map.get($font-sizes, drawer-title);
+  font-weight: map.get($font-weights, bold);
+  line-height: map.get($line-heights, tight);
+}
+
+.task-detail__properties {
+  display: grid;
+  gap: map.get($spacing-scale, 5);
+  margin-top: map.get($spacing-scale, 8);
+}
+
+.task-detail__property {
+  display: grid;
+  grid-template-columns: 176px minmax(0, 1fr);
+  gap: map.get($spacing-scale, 5);
+  align-items: start;
+}
+
+.task-detail__property-label,
+.task-detail__property-value {
+  display: inline-flex;
+  align-items: center;
+}
+
+.task-detail__property-label {
+  gap: map.get($spacing-scale, 3);
+  color: $text-muted;
+  font-size: map.get($font-sizes, meta);
+  font-weight: map.get($font-weights, normal);
+}
+
+.task-detail__property-label .layout-icon {
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
+  color: $text-muted;
+}
+
+.task-detail__property-value {
+  min-width: 0;
+  gap: map.get($spacing-scale, 2);
+  color: $text-primary;
+  font-size: map.get($font-sizes, body);
+  font-weight: map.get($font-weights, medium);
+  flex-wrap: wrap;
+}
+
+.task-detail__property-value--danger {
+  color: $danger;
+}
+
+.task-detail__description {
+  margin-top: map.get($spacing-scale, 8);
+  border-radius: map.get($radii, lg);
+  background: $surface-soft;
+  padding: map.get($spacing-scale, 5);
+}
+
+.task-detail__section-title {
+  color: $text-primary;
+  font-size: map.get($font-sizes, title);
+  font-weight: map.get($font-weights, semibold);
+  margin-bottom: map.get($spacing-scale, 2);
+}
+
+.task-detail__description p {
+  color: $text-secondary;
+  font-size: map.get($font-sizes, body);
+  line-height: map.get($line-heights, normal);
+}
+
+.task-detail__tabs {
+  display: flex;
+  gap: map.get($spacing-scale, 5);
+  margin-top: map.get($spacing-scale, 8);
+  margin-right: calc(#{map.get($spacing-scale, 8)} * -1);
+  margin-left: calc(#{map.get($spacing-scale, 8)} * -1);
+  border-top: 1px solid $border-soft;
+  border-bottom: 1px solid $border-soft;
+  padding: 0 map.get($spacing-scale, 8);
+}
+
+.task-detail__tab {
+  height: 48px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: $text-secondary;
+  font-weight: map.get($font-weights, medium);
+  padding: 0;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.65;
+  }
+}
+
+.task-detail__tab--active {
+  border-bottom-color: $primary;
+  color: $primary;
+}
+
+.task-detail__activity {
+  margin-top: map.get($spacing-scale, 6);
+}
+
+.task-detail__activity-heading {
+  color: $text-primary;
+  font-size: map.get($font-sizes, title);
+  font-weight: map.get($font-weights, semibold);
+  margin-bottom: map.get($spacing-scale, 5);
+}
+
+.task-detail__activity-list {
+  display: grid;
+  gap: map.get($spacing-scale, 5);
+}
+
+.task-detail__activity-item {
+  display: grid;
+  grid-template-columns: map.get($sizes, avatar-sm) 1fr;
+  gap: map.get($spacing-scale, 3);
+  align-items: start;
+}
+
+.task-detail__activity-text {
+  display: flex;
+  gap: map.get($spacing-scale, 1);
+  flex-wrap: wrap;
+  color: $text-secondary;
+  font-size: map.get($font-sizes, caption);
+  line-height: map.get($line-heights, normal);
+}
+
+.task-detail__activity-text strong {
+  color: $text-primary;
+  font-weight: map.get($font-weights, semibold);
+}
+
+.task-detail__activity-time {
+  margin-top: map.get($spacing-scale, 1);
+  color: $text-muted;
+  font-size: map.get($font-sizes, caption);
+}
+
+@keyframes task-detail-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.base-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: map.get($z-indexes, modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $overlay;
+  padding: map.get($spacing-scale, 6);
+}
+
+.base-dialog__panel {
+  width: min(100%, map.get($sizes, modal-width));
+  max-height: calc(100vh - 48px);
+  overflow: hidden;
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, xl);
+  background: $surface;
+  box-shadow: map.get($shadows, lg);
+}
+
+.base-dialog__panel--sm {
+  width: min(100%, map.get($sizes, modal-width-sm));
+}
+
+.base-dialog__header {
+  border-bottom: 1px solid $border-soft;
+  padding: map.get($spacing-scale, 6) map.get($spacing-scale, 7);
+}
+
+.base-dialog__title {
+  color: $text-primary;
+  font-size: map.get($font-sizes, h2);
+  font-weight: map.get($font-weights, bold);
+  line-height: map.get($line-heights, tight);
+}
+
+.base-dialog__description {
+  max-width: 48ch;
+  margin-top: map.get($spacing-scale, 2);
+  color: $text-secondary;
+  font-size: map.get($font-sizes, body);
+  line-height: map.get($line-heights, normal);
+}
+
+.base-dialog__content {
+  max-height: calc(100vh - 160px);
+  overflow: auto;
+  padding: map.get($spacing-scale, 7);
+}
+
+.base-dialog__footer {
+  border-top: 1px solid $border-soft;
+  padding: map.get($spacing-scale, 5) map.get($spacing-scale, 7);
+}
+
+.task-modal__form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: map.get($spacing-scale, 5);
+}
+
+.base-input,
+.task-modal__select-row {
+  display: grid;
+  gap: map.get($spacing-scale, 2);
+}
+
+.task-modal__field {
+  min-width: 0;
+}
+
+.task-modal__field--full {
+  grid-column: 1 / -1;
+}
+
+.base-input--textarea {
+  grid-template-columns: 1fr;
+  gap: map.get($spacing-scale, 3);
+  border-radius: map.get($radii, lg);
+  background: $surface-soft;
+  padding: map.get($spacing-scale, 5);
+}
+
+.base-input__label,
+.task-modal__label {
+  color: $text-primary;
+  font-size: map.get($font-sizes, caption);
+  font-weight: map.get($font-weights, semibold);
+  line-height: map.get($line-heights, tight);
+}
+
+.base-input__field {
+  display: grid;
+  gap: map.get($spacing-scale, 2);
+}
+
+.base-input__control,
+.task-modal__control,
+textarea.base-input__control {
+  width: 100%;
+  border: 1px solid $border-soft;
+  border-radius: map.get($radii, default);
+  background: $surface;
+  color: $text-primary;
+  font: inherit;
+  outline: 0;
+  transition:
+    border-color map.get($transitions, base),
+    box-shadow map.get($transitions, base);
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: $focus-ring-shadow;
+  }
+}
+
+.base-input__control,
+.task-modal__control {
+  min-height: 40px;
+  padding: 0 map.get($spacing-scale, 3);
+}
+
+textarea.base-input__control,
+.base-input__control--textarea {
+  min-height: 180px;
+  resize: vertical;
+  padding: map.get($spacing-scale, 4);
+}
+
+.base-input__error {
+  color: $danger;
+  font-size: map.get($font-sizes, caption);
+}
+
+.task-modal__footer {
+  width: 100%;
+}
+
+.base-confirm-dialog__actions {
+  width: 100%;
+}

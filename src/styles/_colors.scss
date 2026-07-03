@@ -1,0 +1,75 @@
+$primary: #6c5ce0;
+$secondary: #6b7176;
+$success: #1f9254;
+$warning: #c98a00;
+$danger: #e5484d;
+$info: #2563eb;
+$accent-pink: #e84393;
+$avatar-purple: #7c3aed;
+$avatar-teal: #0f766e;
+
+$surface: #ffffff;
+$surface-soft: #f4f5f7;
+$surface-column: #f4f5f7;
+$surface-translucent: rgb(255 255 255 / 56%);
+$white: #ffffff;
+$black: #1a1d21;
+$transparent: transparent;
+
+$app-bg: #eceef1;
+$overlay: rgb(0 0 0 / 56%);
+$overlay-drawer: rgb(20 23 30 / 34%);
+$focus-ring-shadow: 0 0 0 3px rgb(109 74 255 / 12%);
+
+$text-primary: #1a1d21;
+$text-secondary: #6b7176;
+$text-muted: #9aa0a6;
+$text-soft: #9aa0a6;
+$text-white: #ffffff;
+$text-black: #1a1d21;
+
+$border-color: #e6e7ea;
+$border-soft: #eeeff1;
+$scrollbar-thumb: #dadce0;
+
+$primary-soft: #f1eefe;
+$success-soft: #e6f6ec;
+$warning-soft: #fdf4dc;
+$danger-soft: #fdecec;
+$info-soft: #dbeafe;
+
+$background-colors: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  warning: $warning,
+  danger: $danger,
+  surface: $surface,
+  surface-soft: $surface-soft,
+  column: $surface-column,
+  'white': $white,
+  'transparent': $transparent,
+);
+
+$text-colors: (
+  primary: $text-primary,
+  secondary: $text-secondary,
+  success: $success,
+  warning: $warning,
+  danger: $danger,
+  muted: $text-muted,
+  soft: $text-soft,
+  'white': $text-white,
+  'black': $text-black,
+  brand: $primary,
+);
+
+$border-colors: (
+  default: $border-color,
+  soft: $border-soft,
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  warning: $warning,
+  danger: $danger,
+);

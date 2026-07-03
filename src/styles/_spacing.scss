@@ -1,0 +1,139 @@
+$spacing-unit: 4px;
+
+$spacing-scale: (
+  0: 0,
+  1: $spacing-unit,
+  2: $spacing-unit * 2,
+  3: $spacing-unit * 3,
+  4: $spacing-unit * 4,
+  5: $spacing-unit * 5,
+  6: $spacing-unit * 6,
+  7: $spacing-unit * 7,
+  8: $spacing-unit * 8,
+  9: $spacing-unit * 9,
+  10: $spacing-unit * 10,
+);
+
+$radii: (
+  none: 0,
+  sm: 8px,
+  default: 8px,
+  md: 11px,
+  lg: 16px,
+  xl: 18px,
+  full: 999px,
+);
+
+$shadows: (
+  none: none,
+  sm: 0 4px 12px rgb(20 23 30 / 4%),
+  default: 0 8px 24px rgb(20 23 30 / 8%),
+  md: 0 8px 28px rgb(20 22 40 / 14%),
+  lg: 0 24px 60px rgb(20 22 40 / 22%),
+  xl: -20px 0 60px rgb(0 0 0 / 12%),
+);
+
+$z-indexes: (
+  base: 0,
+  sticky: 10,
+  dropdown: 20,
+  overlay: 80,
+  drawer: 90,
+  modal: 100,
+  toast: 110,
+);
+
+$transitions: (
+  fast: 120ms ease,
+  base: 180ms ease,
+  drawer: 220ms ease,
+);
+
+$breakpoint-desktop-min: 1280px;
+
+$sizes: (
+  sidebar-width: 240px,
+  header-height: 80px,
+  board-offset-height: 284px,
+  drawer-width: 640px,
+  modal-width-sm: 440px,
+  modal-width: 760px,
+  avatar-sm: 24px,
+  avatar-md: 32px,
+);
+
+$displays: (
+  block: block,
+  inline: inline,
+  inline-block: inline-block,
+  flex: flex,
+  grid: grid,
+  none: none,
+);
+
+$flex-directions: (
+  row: row,
+  column: column,
+);
+
+$justify-content: (
+  start: flex-start,
+  center: center,
+  between: space-between,
+  around: space-around,
+  end: flex-end,
+);
+
+$align-items: (
+  start: flex-start,
+  center: center,
+  end: flex-end,
+  stretch: stretch,
+);
+
+$flex-wraps: (
+  wrap: wrap,
+  nowrap: nowrap,
+);
+
+$widths: (
+  full: 100%,
+);
+
+$heights: (
+  full: 100%,
+);
+
+$min-heights: (
+  screen: 100vh,
+);
+
+$max-widths: (
+  md: 480px,
+);
+
+$overflows: (
+  hidden: hidden,
+  auto: auto,
+  scroll: scroll,
+);
+
+$cursors: (
+  pointer: pointer,
+  default: default,
+);
+
+$positions: (
+  relative: relative,
+  absolute: absolute,
+  fixed: fixed,
+  sticky: sticky,
+);
+
+$opacities: (
+  0: 0,
+  25: 0.25,
+  50: 0.5,
+  75: 0.75,
+  100: 1,
+);
