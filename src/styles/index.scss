@@ -310,6 +310,34 @@ p {
   border: 0;
 }
 
+.not-found-page {
+  min-height: calc(100vh - #{map.get($sizes, header-height)});
+  padding: map.get($spacing-scale, 10);
+}
+
+.not-found-page__content {
+  max-width: map.get($max-widths, md);
+}
+
+.not-found-page__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: map.get($spacing-scale, 10);
+  padding: 0 map.get($spacing-scale, 5);
+  border-radius: map.get($radii, md);
+  background: $primary;
+  color: $text-white;
+  font-weight: map.get($font-weights, semibold);
+  text-decoration: none;
+  transition: background map.get($transitions, fast);
+}
+
+.not-found-page__link:hover {
+  background: $primary;
+  box-shadow: map.get($shadows, sm);
+}
+
 .scroll-y::-webkit-scrollbar,
 .layout-content::-webkit-scrollbar,
 .kanban-column__cards::-webkit-scrollbar,
